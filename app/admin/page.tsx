@@ -1,0 +1,1 @@
+import Pateo from "../../components/pateo";export default function Page(){return <Pateo initialAdmin/>}

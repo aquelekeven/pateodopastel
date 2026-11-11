@@ -10,6 +10,7 @@ export async function demoFetch(_url:string, options?:RequestInit){
    if(state.orders.some((o:any)=>o.id===b.id))return Response.json({ok:true,id:b.id});
    if(!b.customer?.trim()||!/^\d{10,11}$/.test(b.phone.replace(/\D/g,'')))return fail('Preencha nome e telefone válido. Use dados fictícios.');
    if(b.delivery==='Entrega'&&!b.detail?.trim())return fail('Informe o endereço ou local de entrega.');
+   if(b.paymentIntent==='Conta mensal'&&(localStorage.getItem('pateo-demo-login')!=='yes'||b.phone!=='11999990000'))return fail('Entre na conta de teste para anotar na conta mensal.');
    if(!b.items?.length)return fail('Sua sacola está vazia.');
    const items=[];
    for(const i of b.items){const p=state.products.find((p:any)=>p.id===i.id);if(!p?.available||!Number.isInteger(i.qty)||i.qty<1||i.qty>20)return fail('Confira os itens: um produto pode estar indisponível.');items.push({...i,name:p.name,price:p.price});}

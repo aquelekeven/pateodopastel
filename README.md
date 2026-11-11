@@ -1,3 +1,14 @@
+## Atualização da demo Pages
+
+Minha conta oferece perfil fictício, endereços locais, pedidos e extrato mensal.
+No checkout, Conta mensal exige entrar no perfil fictício. Os pedidos são vinculados
+à identidade de teste (telefone 11999990000); o admin agrupa por cliente e mês.
+Recebimentos continuam registrados por pedido, inclusive parciais; cancelados não
+compõem o saldo. Este fluxo não implementa crédito real, autorização de clientes,
+fechamento contábil, autenticação real ou sincronização entre dispositivos.
+A API D1 da versão privada ainda não foi migrada para contas mensais.
+Banners de energético e pudim usam imagem gerada, ilustrativa. Carrossel de 15 segundos.
+
 ## GitHub Pages: teste no celular
 
 A pasta `docs/` contém uma demonstração estática das duas interfaces. Todos os pedidos,

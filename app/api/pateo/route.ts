@@ -14,8 +14,8 @@ if(b.action==="order"){
  if(typeof b.id!=="string"||!/^p-[a-f0-9-]{36}$/.test(b.id))return out({error:"Pedido inválido"},400);
  const previous=await db.select().from(orders).where(eq(orders.id,b.id));if(previous.length)return out({ok:true,id:b.id});
  if(typeof b.customer!=="string"||b.customer.trim().length<2||b.customer.length>80||typeof b.phone!=="string"||!/^\d{10,11}$/.test(b.phone.replace(/\D/g,"")))return out({error:"Preencha nome e telefone válido."},400);
- if(!["Retirada","Recepção FB","Mesa"].includes(b.delivery)||typeof b.detail!=="string"||b.detail.length>120||typeof b.slot!=="string"||b.slot.length>30)return out({error:"Confira os dados de entrega."},400);
- if(b.delivery!=="Retirada"&&!b.detail.trim())return out({error:"Informe o ramal ou a mesa."},400);
+ if(!["Retirada","Comer no local","Entrega"].includes(b.delivery)||typeof b.detail!=="string"||b.detail.length>120||typeof b.slot!=="string"||b.slot.length>30)return out({error:"Confira os dados de entrega."},400);
+ if(b.delivery==="Entrega"&&!b.detail.trim())return out({error:"Informe o endereço ou local de entrega."},400);
  if(!Array.isArray(b.items)||!b.items.length||b.items.length>40)return out({error:"Sua sacola está vazia ou excede o limite."},400);
  const overrides=await db.select().from(catalog);const items=[];let total=0;
  for(const i of b.items){const p=menu.find(p=>p.id===i.id);const o=overrides.find(x=>x.id===i.id);if(!p||o?.available===0||!Number.isInteger(i.qty)||i.qty<1||i.qty>20||typeof i.note!=="string"||i.note.length>240)return out({error:"Confira os itens da sacola. Um produto pode estar indisponível."},400);const price=o?.price??p.price;total+=price*i.qty;items.push({id:p.id,name:p.name,qty:i.qty,note:i.note,price});}

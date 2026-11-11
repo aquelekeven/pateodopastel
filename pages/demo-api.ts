@@ -9,7 +9,7 @@ export async function demoFetch(_url:string, options?:RequestInit){
   if(b.action==='order'){
    if(state.orders.some((o:any)=>o.id===b.id))return Response.json({ok:true,id:b.id});
    if(!b.customer?.trim()||!/^\d{10,11}$/.test(b.phone.replace(/\D/g,'')))return fail('Preencha nome e telefone válido. Use dados fictícios.');
-   if(b.delivery!=='Retirada'&&!b.detail?.trim())return fail('Informe a mesa ou o ramal.');
+   if(b.delivery==='Entrega'&&!b.detail?.trim())return fail('Informe o endereço ou local de entrega.');
    if(!b.items?.length)return fail('Sua sacola está vazia.');
    const items=[];
    for(const i of b.items){const p=state.products.find((p:any)=>p.id===i.id);if(!p?.available||!Number.isInteger(i.qty)||i.qty<1||i.qty>20)return fail('Confira os itens: um produto pode estar indisponível.');items.push({...i,name:p.name,price:p.price});}

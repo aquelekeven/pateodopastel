@@ -85,3 +85,7 @@ Carga inicial idempotente adiciona 6 pedidos mensais fictícios em 3 contas: Cli
 
 ### Contas mensais: resumo, calendário e lista
 A entrada administrativa mostra somente nome, telefone, saldo do mês e último pagamento registrado (não é previsão de vencimento). Ao selecionar cliente, abre mês navegável com alternância Calendário/Lista. Calendário usa datas locais, marca dias com pedidos e mostra todos os pedidos do dia selecionado, itens, observações, status, recebimentos e saldo. A lista mostra data, resumo e valor, com total excluindo cancelados. O Perfil usa o mesmo componente limitado ao telefone do cliente de teste. Registrar pagamentos continua pelo modal de detalhes administrativo.
+
+### Correções para apresentação
+Banners agora são exclusivamente imagens em todas as telas, proporção 3:1 (1800×600 recomendado), com pontos, troca em 15 s e gesto horizontal. Configurações permite enviar/restaurar os três banners. Upload valida JPG/PNG/WebP até 10 MB, reduz a largura máxima para 1800 px e salva JPEG em localStorage; não compartilha imagens entre aparelhos e informa falhas de armazenamento. Imagens com outra proporção são contidas, sem cortar a arte.
+Corrigido destino do botão mobile Pedidos (comparava com Operação indevidamente). Busca limpa o filtro de categoria e foca o campo. Cliente tem histórico compacto de todos os seus pedidos conhecidos nesta demo, ordenados do mais recente, com data, resumo, valor e etapa; detalhes abrem ao clicar. Removido gerador administrativo da tela do cliente.

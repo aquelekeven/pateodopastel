@@ -61,3 +61,11 @@ Fotos são ilustrativas para a prévia privada, não representam produtos reais 
 - Tapioca: https://www.daterrinhaalimentos.com/receitas/frango-com--requeij%C3%A3o-cremoso
 - Demais imagens: Unsplash (IDs nos nomes de referência abaixo): 1568901346375-23c9450c58cd, 1509042239860-f550ce710b93, 1525351484163-7529414344d8, 1547592180-85f173990554, 1613478223719-2ab802602423, 1548839140-29a749e1cf4d.
 - Ícones: Lucide. Fontes: DM Sans e Manrope via Google Fonts. Logo: SVG original desta demonstração.
+
+## Demo de atendimento e cozinha — novembro/2026
+
+GitHub Pages: acessos locais `cliente@pateo.test` e `admin@pateo.test`, ambos com senha pública de demonstração `pateo123`. As credenciais são fictícias e ficam no código público: **não há autenticação real nem isolamento seguro de dados**. Não use dados reais. Sessão por aba (sessionStorage); pedidos compartilhados por localStorage entre abas da mesma origem/navegador, com atualização por evento e consulta a cada 3 segundos. Aparelhos diferentes não sincronizam.
+
+Admin → Novo pedido: cliente, telefone, origem, itens, observações, horário/ramal, entrega e conta mensal. Contas agrupadas por telefone normalizado. Admin → Cozinha: recebidos, em preparo e prontos; botão para ativar áudio e alerta a cada 12 segundos enquanto houver recebidos. O navegador deve permanecer aberto e ativo; o áudio depende da permissão e do equipamento, não é push em segundo plano. Ao sair da cozinha, o alerta para.
+
+Esta alteração é para a demo Pages. A versão Sites/D1 não foi publicada nem adaptada para autenticação ou lançamento manual mensal. Antes de uso operacional, implementar banco compartilhado, autenticação no servidor e autorização por papel. Sem integração com Stone, Eye, WhatsApp ou impressora.

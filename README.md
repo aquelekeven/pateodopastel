@@ -77,3 +77,8 @@ No celular, carrossel somente de imagens em proporção 16:9, avanço automátic
 Para substituir as artes: enviar 3 arquivos JPG/PNG/WebP em **1600 × 900 px** (ou outra resolução 16:9), identificados como banner 1, 2 e 3. Textos promocionais devem estar dentro da própria imagem. As fotos atuais são provisórias; não há upload administrativo nesta versão. Atualizações das artes são publicadas pelo repositório.
 
 Operação unifica o acompanhamento diário. Histórico lista todas as etapas, incluindo entregues e cancelados, com busca por cliente/número e filtros Hoje, Semana (desde segunda-feira), Mês, Período e Todos, usando o fuso do navegador. A fila mostra os mais antigos primeiro e limites ajustáveis de atenção/atraso (5/10 minutos inicialmente), desde o recebimento e incluindo preparo. Vermelho pulsa apenas para pedidos ainda em produção; respeita preferência de movimento reduzido.
+
+### Revisão de teste: kanban e seletor de perfil
+O cabeçalho agora alterna Cliente/Admin sem login. É apenas uma simulação local. Operação tem quatro colunas compactas: Novos pedidos, Em preparo, Prontos e Entregues hoje. Novas entregas registram deliveredAt; dados antigos sem esse campo usam createdAt como fallback. Histórico preserva os demais dias.
+Configurações contém liga/desliga do som e três tons (Clássico, Campainha, Suave), com prévia ao selecionar. Som somente para novas entradas, sem repetição; habilitação por sessão/aba devido às restrições do navegador.
+Carga inicial idempotente adiciona 6 pedidos mensais fictícios em 3 contas: Cliente de teste, Ana e Bruno. Cliente de teste também vê sua conta no Perfil; Ana tem recebimento parcial para testar saldo. Dados existentes são preservados.

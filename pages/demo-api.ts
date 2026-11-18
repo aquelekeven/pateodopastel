@@ -3,6 +3,11 @@ const key='pateo-pages-demo-v1';
 export async function demoFetch(_url:string, options?:RequestInit){
  try {
   const state=JSON.parse(localStorage.getItem(key)||'null')||{products:menu.map(p=>({...p,available:true})),orders:[]};
+  if(!state.monthlyDemoSeeded){
+   const clients=[['Cliente de teste','11999990000'],['Ana · teste','11999990001'],['Bruno · teste','11999990002']];
+   clients.forEach(([customer,phone],c)=>{for(let n=0;n<2;n++){const id='demo-monthly-'+c+'-'+n;if(state.orders.some((o:any)=>o.id===id))continue;const p=state.products.find((p:any)=>p.id===(n?'executivo':'carne'))||state.products[0];const date=new Date();date.setDate(Math.max(1,date.getDate()-n-1));const total=p.price*(n?1:2),paid=c===1&&n===0?1000:0;state.orders.push({id,createdAt:date.toISOString(),deliveredAt:date.toISOString(),customer,phone,delivery:'Retirada',detail:'',slot:'Pedido fictício para testar conta mensal',source:'Demonstração',isTest:true,paymentIntent:'Conta mensal',status:'Entregue',items:[{key:id,id:p.id,name:p.name,price:p.price,qty:n?1:2,note:'TESTE'}],total,paid,payments:paid?[{id:id+'-payment',amount:paid,method:'Pix',operator:'Atendente de teste',date:date.toISOString()}]:[]})}});
+   state.monthlyDemoSeeded=true;localStorage.setItem(key,JSON.stringify(state));
+  }
   if(!options)return Response.json(state);
   const b=JSON.parse(String(options.body));
   const role=sessionStorage.getItem('pateo-test-role');
@@ -27,7 +32,7 @@ export async function demoFetch(_url:string, options?:RequestInit){
    if(b.action==='status'){
     const current=stages.indexOf(o.status),next=stages.indexOf(b.status);
     if(!((current>=0&&next===current+1)||(b.status==='Cancelado'&&o.status!=='Entregue'&&o.status!=='Cancelado'&&o.paid===0)))return fail('Mudança de status não permitida.');
-    o.status=b.status;
+    o.status=b.status;if(b.status==='Entregue')o.deliveredAt=new Date().toISOString();
    }else if(b.action==='payment'){
     if(o.payments.some((p:any)=>p.id===b.paymentId))return Response.json({ok:true});
     if(o.status==='Cancelado'||!Number.isInteger(b.amount)||b.amount<=0||b.amount>o.total-o.paid||!b.operator?.trim())return fail('Confira o valor e o responsável pelo recebimento.');

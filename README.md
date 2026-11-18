@@ -93,3 +93,7 @@ Corrigido destino do botão mobile Pedidos (comparava com Operação indevidamen
 ### Admin mobile e vínculo do pedido manual
 Barra inferior mobile: Operação, Novo pedido, Contas, Histórico e Mais (Pagamentos, Cardápio, Configurações). Menu lateral permanece no desktop.
 Novo pedido oferece busca por nome/telefone entre os clientes conhecidos dos pedidos locais, seleção com telefone preenchido automaticamente, troca e entrada de novo cliente. Vínculo validado pelo adaptador de demonstração; telefone normalizado vincula histórico do cliente. Conta mensal é opção separada do vínculo. Não existe cadastro/autenticação de produção: antes de operação real, migrar vínculo para ID de cliente no banco, com telefone verificado.
+
+### Pedido manual visual e histórico responsivo
+Novo pedido começa pelo cardápio completo com fotos, categorias, busca e disponibilidade, usando os mesmos produtos/preços do cliente. Toques adicionam ao carrinho; resumo fixo leva à revisão, com quantidades, observações, seleção de cliente e entrega antes de enviar. A seleção persiste ao voltar ao cardápio.
+Histórico administrativo mantém tabela no desktop e reorganiza cada pedido em bloco no mobile, com rótulos e filtros na largura da tela, sem rolagem horizontal da tabela.

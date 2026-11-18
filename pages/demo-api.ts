@@ -33,6 +33,12 @@ export async function demoFetch(_url:string, options?:RequestInit){
   if(b.action==='order'){
    if(localStorage.getItem('pateo-open')==='no')return fail('A loja está fechada para novos pedidos.');
    if(state.orders.some((o:any)=>o.id===b.id))return Response.json({ok:true,id:b.id});
+   if(b.linkedCustomerPhone){
+    if(!b.manual||role!=='admin')return fail('Vínculo disponível no pedido manual do administrador.');
+    const linked=[...state.orders].reverse().find((o:any)=>o.phone.replace(/\D/g,'')===b.linkedCustomerPhone);
+    if(!linked)return fail('Cliente não encontrado. Selecione o cliente novamente.');
+    b.phone=b.linkedCustomerPhone;b.customer=linked.customer;
+   }
    if(!b.customer?.trim()||!/^\d{10,11}$/.test(b.phone.replace(/\D/g,'')))return fail('Preencha nome e telefone válido. Use dados fictícios.');
    if(b.delivery==='Entrega'&&!b.detail?.trim())return fail('Informe o endereço ou local de entrega.');
    if(b.paymentIntent==='Conta mensal'&&(!(b.manual&&role==='admin')&&(!(role==='user'||role==='admin')||b.phone!=='11999990000')))return fail('Entre na conta de teste para anotar na conta mensal.');

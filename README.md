@@ -89,3 +89,7 @@ A entrada administrativa mostra somente nome, telefone, saldo do mês e último 
 ### Correções para apresentação
 Banners agora são exclusivamente imagens em todas as telas, proporção 3:1 (1800×600 recomendado), com pontos, troca em 15 s e gesto horizontal. Configurações permite enviar/restaurar os três banners. Upload valida JPG/PNG/WebP até 10 MB, reduz a largura máxima para 1800 px e salva JPEG em localStorage; não compartilha imagens entre aparelhos e informa falhas de armazenamento. Imagens com outra proporção são contidas, sem cortar a arte.
 Corrigido destino do botão mobile Pedidos (comparava com Operação indevidamente). Busca limpa o filtro de categoria e foca o campo. Cliente tem histórico compacto de todos os seus pedidos conhecidos nesta demo, ordenados do mais recente, com data, resumo, valor e etapa; detalhes abrem ao clicar. Removido gerador administrativo da tela do cliente.
+
+### Admin mobile e vínculo do pedido manual
+Barra inferior mobile: Operação, Novo pedido, Contas, Histórico e Mais (Pagamentos, Cardápio, Configurações). Menu lateral permanece no desktop.
+Novo pedido oferece busca por nome/telefone entre os clientes conhecidos dos pedidos locais, seleção com telefone preenchido automaticamente, troca e entrada de novo cliente. Vínculo validado pelo adaptador de demonstração; telefone normalizado vincula histórico do cliente. Conta mensal é opção separada do vínculo. Não existe cadastro/autenticação de produção: antes de operação real, migrar vínculo para ID de cliente no banco, com telefone verificado.

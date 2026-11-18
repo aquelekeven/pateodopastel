@@ -69,3 +69,5 @@ GitHub Pages: acessos locais `cliente@pateo.test` e `admin@pateo.test`, ambos co
 Admin → Novo pedido: cliente, telefone, origem, itens, observações, horário/ramal, entrega e conta mensal. Contas agrupadas por telefone normalizado. Admin → Cozinha: recebidos, em preparo e prontos; botão para ativar áudio e alerta a cada 12 segundos enquanto houver recebidos. O navegador deve permanecer aberto e ativo; o áudio depende da permissão e do equipamento, não é push em segundo plano. Ao sair da cozinha, o alerta para.
 
 Esta alteração é para a demo Pages. A versão Sites/D1 não foi publicada nem adaptada para autenticação ou lançamento manual mensal. Antes de uso operacional, implementar banco compartilhado, autenticação no servidor e autorização por papel. Sem integração com Stone, Eye, WhatsApp ou impressora.
+
+Botão **Pedido de teste aleatório** no cabeçalho administrativo: gera 1–3 produtos disponíveis, quantidades 1–2, cliente fictício prefixado TESTE, observações e modalidade de recebimento. Não gera pagamento nem débito mensal; pedidos entram na fila normal e podem ser cancelados em Pedidos. Exige sessão admin de demonstração e loja aberta.

@@ -1,0 +1,9 @@
+"use client";
+import {useState} from 'react';
+import {CalendarDays,ChevronLeft,ChevronRight,X} from 'lucide-react';
+export default function DatePicker({label,value,min,onChange}:{label:string,value:string,min?:string,onChange:(v:string)=>void}){
+ const [open,setOpen]=useState(false),[month,setMonth]=useState(()=>value?new Date(value+'T12:00:00'):new Date());
+ const y=month.getFullYear(),m=month.getMonth(),offset=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate();
+ const key=(d:number)=>`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+ return <div className="date-picker"><span>{label}</span><button type="button" className="date-trigger" aria-expanded={open} onClick={()=>{setMonth(value?new Date(value+'T12:00:00'):new Date());setOpen(!open)}}><CalendarDays size={18}/>{value?new Date(value+'T12:00:00').toLocaleDateString('pt-BR'):'Selecionar data'}</button>{open&&<div className="date-calendar" onKeyDown={e=>{if(e.key==='Escape')setOpen(false)}}><div className="date-calendar-heading"><button type="button" aria-label="Mês anterior" onClick={()=>setMonth(new Date(y,m-1,1))}><ChevronLeft size={18}/></button><b>{month.toLocaleDateString('pt-BR',{month:'long',year:'numeric'})}</b><button type="button" aria-label="Próximo mês" onClick={()=>setMonth(new Date(y,m+1,1))}><ChevronRight size={18}/></button><button type="button" aria-label="Fechar calendário" onClick={()=>setOpen(false)}><X size={16}/></button></div><div className="date-grid">{['D','S','T','Q','Q','S','S'].map((d,i)=><small key={'w'+i}>{d}</small>)}{Array.from({length:offset},(_,i)=><span key={'e'+i}/>)}{Array.from({length:days},(_,i)=>{const date=key(i+1);return <button type="button" key={date} aria-label={new Date(date+'T12:00:00').toLocaleDateString('pt-BR')} aria-pressed={value===date} disabled={!!min&&date<min} className={value===date?'selected':''} onClick={()=>{onChange(date);setOpen(false)}}>{i+1}</button>})}</div></div>}</div>
+}
